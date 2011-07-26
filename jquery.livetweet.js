@@ -69,8 +69,9 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 					rt = settings.html_before;
 					tweets = '';
 					for(i=0;i<json.length;i++) {							
-						text = settings.html_tweets.replace('{text}', $.fn.livetweet('format_links', json[i].text));																								
-						tweets += text.replace('{date}', settings.format_date(new Date(Date.parse(json[i].created_at.replace(/(\+\S+) (.*)/, '$2 $1')))));
+						text = settings.html_tweets.replace('{text}', $.fn.livetweet('format_links', json[i].text));																														
+						date_parse = $.browser.msie ? new Date(json[i].created_at.replace(/(\+\S+) (.*)/, '$2 $1')) : new Date(json[i].created_at);						
+						tweets += text.replace('{date}', settings.format_date(date_parse));
 					}
 					rt += tweets+settings.html_after;					
 					return $this.each(function() {
