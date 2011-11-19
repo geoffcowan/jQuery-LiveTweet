@@ -55,6 +55,7 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			'time_span' : 'Sekunden alt,ungefähr 1 Minute alt,Minuten alt,ungefähr 1 Stunde alt,Stunden alt,ungefähr 1 Tag alt,Tage alt,vor langer Zeit',
 			'error' : 'Ein Fehler ist aufgetreten!',
 			'loading' : 'Laden...'
+		}
 	};
 	
 	var _months, _days, _timespan;
