@@ -64,4 +64,5 @@ $("#your_element").livetweet({
 </pre>
 
 h2. Licence
+
 Released under "WTFPL":http://en.wikipedia.org/wiki/WTFPL
