@@ -48,7 +48,7 @@ $("#your_element").livetweet({
 	'username' : 'sergio_martino',
 	'lang': 'it',
 	'template' : '{tweets} {text} <br> {date} {/tweets}',
-	'use_relative_dates' : false,
+	'relative_dates' : false,
 	'format_date' : function(js_date_object) {
 		return my_date.getDay()+'/'+my_date.getMonth()+'/'+my_date.getFullYear();
 	}
