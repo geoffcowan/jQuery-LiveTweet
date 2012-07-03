@@ -2,13 +2,13 @@ h1. jQuery LiveTweet documentation
 
 h2. What it does
 
-jQuery LiveTweet is a jquery plugin that fetches tweets from Twitter.
+jQuery LiveTweet is a jquery plugin that fetches tweets of a Twitter user.
 
 h2. How to use it
 
 <pre>
 <code>
-<script src="jquery.js"></script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
 <script src="jquery.livetweet.js"></script>
 <script>
 $(document).ready(function() {
@@ -25,36 +25,29 @@ h2. Options
 * *username*: Your twitter username. Defaults to @jeresig@ (jQuery's creator).
 * *limit*: Number of tweets returned. Defaults to @5@.
 * *timeout*: Request timeout. Defaults to @2000@ (2 seconds).
-* *html_before*: HTML to be rendered before tweets' loop. Defaults to @<ul>@.
-* *html_after*: HTML to be rendered after tweets' loop. Defaults to @</ul>@.
-* *html_tweets*: HTML pattern for tweets. Defaults to @<li>{text}<br>{date}</li>@.
-* *use_relative_dates*: Boolean. Uses relative dates (ie: @2 minutes ago@). Defaults to @true@.
+* *template*: A view for your tweets. Defaults to @<ul>{tweets}<li>{text}<br>{date}</li>{/tweets}</ul>@.
+* *relative_dates*: Boolean. Uses relative dates (ie: @2 minutes ago@). Defaults to @true@.
 * *format_date*: Date formatting function. Use it if you set relative dates to false. Defaults to a date like @Wednesday 12 March 2011@.
-* *lang*: Language for dates and messages. Currently supported languages are @en, id, it, fr, de@. Defaults to @en@.
+* *lang*: Language for dates and messages. Currently supported languages are @en, it, fr, de, id@. Defaults to @en@.
 
 h2. Example
 
 <pre>
 <code>
 $("#your_element").livetweet({
-	'username' : 'sergio_martino',
-	'html_before' : 'These are my tweets:<br>',
-	'html_tweets' : '{date} | {text}<br>',
-	'html_after' : '<br>Hello!'	
+	'username' : 'sergio_martino'	
 });
 </code>
 </pre>
 
-h2. Example with custom date and language
+h2. Example with custom date, template and language
 
 <pre>
 <code>
 $("#your_element").livetweet({
 	'username' : 'sergio_martino',
-	'html_before' : 'These are my tweets:<br>',
-	'html_tweets' : '{date} | {text}<br>',
-	'html_after' : '<br>Hello!',
 	'lang': 'it',
+	'template' : '{tweets} {text} <br> {date} {/tweets}',
 	'use_relative_dates' : false,
 	'format_date' : function(js_date_object) {
 		return my_date.getDay()+'/'+my_date.getMonth()+'/'+my_date.getFullYear();

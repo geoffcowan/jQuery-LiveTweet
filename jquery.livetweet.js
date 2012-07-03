@@ -1,5 +1,5 @@
 /* 
-JQUERY LIVETWEET 0.5
+JQUERY LIVETWEET 0.6
 by Sergio Martino
 http://www.dailygrind.it
 https://github.com/sergiomartino/jQuery-LiveTweet
@@ -9,14 +9,12 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 	var settings = {      
 		'limit' : 5,		
 		'username' : 'jeresig',
-		'timeout' : 2000,		
-		'html_before' : '<ul>',
-		'html_tweets' : '<li>{text}<br>{date}</li>',
-		'html_after' : '</ul>',		
+		'timeout' : 10000,
+		'template' : '<ul>{tweets}<li>{text}<br>{date}</li>{/tweets}</ul>',	
 		'lang' : 'en',
-		'use_relative_dates' : true,
+		'relative_dates' : true,
 		'format_date' : function(d) {			
-			return (this.use_relative_dates) ? $.fn.livetweet('relative_date',d) : $.fn.livetweet('format_date', d);
+			return (this.relative_dates) ? $.fn.livetweet('relative_date',d) : $.fn.livetweet('format_date', d);
 		}		
 	};
 	
@@ -71,25 +69,17 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			
 			$.ajax({
 				beforeSend : function() {$this.html('<span class="livetweet-loading">'+loc[settings.lang]['loading']+'</span>');},
-				url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name='+settings.username+'&count='+settings.limit,
+				url : 'http://api.twitter.com/status/user_timeline/'+settings.username+'.json?count='+settings.limit+'&include_rts=1&callback=?',
 				type: 'GET',
-				dataType: 'jsonp',						
+				dataType: 'jsonp',	
 				timeout: settings.timeout,
 				error: function() {
 					$this.html('<span class="livetweet-error">'+loc[settings.lang]['error']+'</span>');
 				},
 				success: function(json){																		
 					$this.find(".livetweet-loading").remove();
-					rt = settings.html_before;
-					tweets = '';
-					for(i=0;i<json.length;i++) {							
-						text = settings.html_tweets.replace('{text}', $.fn.livetweet('format_links', json[i].text));																														
-						date_parse = $.browser.msie ? new Date(json[i].created_at.replace(/(\+\S+) (.*)/, '$2 $1')) : new Date(json[i].created_at);						
-						tweets += text.replace('{date}', settings.format_date(date_parse));
-					}
-					rt += tweets+settings.html_after;					
 					return $this.each(function() {
-						$(this).append(rt);
+						$(this).append($.fn.livetweet('view', json));
 					});	
 				}
 			});							
@@ -122,7 +112,23 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			if(diff >= 86400 && diff < 172800) return _timespan[5];
 			if(diff >= 172800 && diff < 2592000) return Math.floor(diff/60/60/24) + ' ' + _timespan[6];
 			if(diff >= 2592000) return _timespan[7];
-		}		
+		},	
+		
+		view : function(json) {
+			var p = new RegExp('{tweets}(.*){/tweets}', 'gi');
+			var items = p.exec(settings.template);		
+			if(items!=null) {
+				var view = '';
+				for(i=0;i<json.length;i++) {		
+					var date_parse = $.browser.msie ? new Date(json[i].created_at.replace(/(\+\S+) (.*)/, '$2 $1')) : new Date(json[i].created_at);						
+					var item = items[1].replace(/{text}/g, $.fn.livetweet('format_links', json[i].text));					
+					item = item.replace(/{date}/g, settings.format_date(date_parse));
+					view += item;
+				}
+				return settings.template.replace(p, view);
+			}
+			return '';
+		}
 	};
 
 	$.fn.livetweet = function(method) {
@@ -134,4 +140,4 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			$.error('Method '+method+' does not exist on jQuery.livetweet');
 		}    
 	};
-})(jQuery);
+})($);
