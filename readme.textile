@@ -24,7 +24,7 @@ h2. Options
 
 * *username*: Your twitter username. Defaults to @jeresig@ (jQuery's creator).
 * *limit*: Number of tweets returned. Defaults to @5@.
-* *timeout*: Request timeout. Defaults to @2000@ (2 seconds).
+* *timeout*: Request timeout. Defaults to @10000@ (10 seconds).
 * *template*: A view for your tweets. Defaults to @<ul>{tweets}<li>{text}<br>{date}</li>{/tweets}</ul>@.
 * *relative_dates*: Boolean. Uses relative dates (ie: @2 minutes ago@). Defaults to @true@.
 * *format_date*: Date formatting function. Use it if you set relative dates to false. Defaults to a date like @Wednesday 12 March 2011@.
