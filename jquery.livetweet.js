@@ -1,7 +1,7 @@
 /* 
 JQUERY LIVETWEET 0.6
 by Sergio Martino
-http://www.dailygrind.it
+http://twitter.com/sergio_martino
 https://github.com/sergiomartino/jQuery-LiveTweet 
 */
 
