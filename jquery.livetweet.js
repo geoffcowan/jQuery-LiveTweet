@@ -69,7 +69,7 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			
 			$.ajax({
 				beforeSend : function() {$this.html('<span class="livetweet-loading">'+loc[settings.lang]['loading']+'</span>');},
-				url : 'http://api.twitter.com/status/user_timeline/'+settings.username+'.json?count='+settings.limit+'&include_rts=1&callback=?',
+				url : 'http://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=1&screen_name='+settings.username+'&count='+settings.limit+'&callback=?',
 				type: 'GET',
 				dataType: 'jsonp',	
 				timeout: settings.timeout,
