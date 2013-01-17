@@ -53,6 +53,13 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			'time_span' : 'Sekunden alt,ungefähr 1 Minute alt,Minuten alt,ungefähr 1 Stunde alt,Stunden alt,ungefähr 1 Tag alt,Tage alt,vor langer Zeit',
 			'error' : 'Ein Fehler ist aufgetreten!',
 			'loading' : 'Laden...'
+		},
+		'pt-br' : {
+			'months' : 'JAN,FEV,MAR,ABR,MAI,JUN,JUL,AGO,SET,OUT,NOV,DEZ',
+			'days' : 'Domingo,Segunda-feira,Terça-feira,Quarta-feira,Quinta-feira,Sexta-feira,Sábado',
+			'time_span' : 'segundos atrás,cerca de 1 minuto atrás,minutos atrás,certa de 1 hora atrás,horas atrás,cerca de 1 dia atrás,dias atrás,Há muito tempo atrás',
+			'error' : 'Um erro ocorreu',
+			'loading' : 'Carregando...'
 		}
 	};
 	
