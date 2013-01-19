@@ -1,5 +1,5 @@
 /* 
-JQUERY LIVETWEET 0.6
+JQUERY LIVETWEET 0.6.1
 by Sergio Martino
 http://twitter.com/sergio_martino
 https://github.com/sergiomartino/jQuery-LiveTweet 
@@ -126,8 +126,8 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			var items = p.exec(settings.template);		
 			if(items!=null) {
 				var view = '';
-				for(i=0;i<json.length;i++) {		
-					var date_parse = $.browser.msie ? new Date(json[i].created_at.replace(/(\+\S+) (.*)/, '$2 $1')) : new Date(json[i].created_at);						
+				for(i=0;i<json.length;i++) {					
+					var date_parse = navigator.appVersion.indexOf('MSIE') > -1 ? new Date(json[i].created_at.replace(/(\+\S+) (.*)/, '$2 $1')) : new Date(json[i].created_at);						
 					var item = items[1].replace(/{text}/g, $.fn.livetweet('format_links', json[i].text));					
 					item = item.replace(/{date}/g, settings.format_date(date_parse));
 					view += item;
