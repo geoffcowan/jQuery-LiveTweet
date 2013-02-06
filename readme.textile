@@ -28,7 +28,7 @@ h2. Options
 * *template*: A view for your tweets. Defaults to @<ul>{tweets}<li>{text}<br>{date}</li>{/tweets}</ul>@.
 * *relative_dates*: Boolean. Uses relative dates (ie: @2 minutes ago@). Defaults to @true@.
 * *format_date*: Date formatting function. Use it if you set relative dates to false. Defaults to a date like @Wednesday 12 March 2011@.
-* *lang*: Language for dates and messages. Currently supported languages are @en, it, fr, de, id@. Defaults to @en@.
+* *lang*: Language for dates and messages. Currently supported languages are @en, it, fr, de, id, pt-br@. Defaults to @en@.
 
 h2. Example
 
